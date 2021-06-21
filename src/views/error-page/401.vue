@@ -39,25 +39,31 @@
 
 <script>
 import errGif from '@/assets/401_images/401.gif';
+import { ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 
 export default {
   name: 'Page401',
-  data() {
+  setup() {
+    const route = useRoute();
+    const router = useRouter();
+    const dialogVisible = ref(false);
+
+    const back = () => {
+      if (route.query.noGoBack) {
+        router.push({ path: '/dashboard' });
+      } else {
+        router.go(-1);
+      }
+    };
+
     return {
       errGif: errGif + '?' + +new Date(),
       ewizardClap:
         'https://wpimg.wallstcn.com/007ef517-bafd-4066-aae4-6883632d9646',
-      dialogVisible: false,
+      dialogVisible,
+      back,
     };
-  },
-  methods: {
-    back() {
-      if (this.$route.query.noGoBack) {
-        this.$router.push({ path: '/dashboard' });
-      } else {
-        this.$router.go(-1);
-      }
-    },
   },
 };
 </script>

@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import { ElMessage } from 'element-plus';
+
 export default {
   props: {
     user: {
@@ -25,14 +27,17 @@ export default {
       },
     },
   },
-  methods: {
-    submit() {
-      this.$message({
+  setup() {
+    const submit = () => {
+      ElMessage.success({
         message: 'User information has been updated successfully',
-        type: 'success',
         duration: 5 * 1000,
       });
-    },
+    };
+
+    return {
+      submit,
+    };
   },
 };
 </script>

@@ -61,13 +61,15 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import Breadcrumb from '@/components/Breadcrumb';
 import Hamburger from '@/components/Hamburger';
 import ErrorLog from '@/components/ErrorLog';
 import Screenfull from '@/components/Screenfull';
 // import SizeSelect from '@/components/SizeSelect';
 import Search from '@/components/HeaderSearch';
+import { useStore } from 'vuex';
+import { computed } from 'vue';
+import { useRouter } from 'vue-router';
 
 export default {
   components: {
@@ -78,17 +80,29 @@ export default {
     // SizeSelect,
     Search,
   },
-  computed: {
-    ...mapGetters(['sidebar', 'avatar', 'device']),
-  },
-  methods: {
-    toggleSideBar() {
-      this.$store.dispatch('app/toggleSideBar');
-    },
-    async logout() {
-      await this.$store.dispatch('user/logout');
-      this.$router.push(`/login?redirect=${this.$route.fullPath}`);
-    },
+  setup() {
+    const store = useStore();
+    const router = useRouter();
+
+    const sidebar = computed(() => store.getters.sidebar);
+    const avatar = computed(() => store.getters.avatar);
+    const device = computed(() => store.getters.device);
+
+    const toggleSideBar = () => {
+      store.dispatch('app/toggleSideBar');
+    };
+    const logout = async () => {
+      await store.dispatch('user/logout');
+      router.push(`/login?redirect=${this.$route.fullPath}`);
+    };
+
+    return {
+      sidebar,
+      avatar,
+      device,
+      toggleSideBar,
+      logout,
+    };
   },
 };
 </script>

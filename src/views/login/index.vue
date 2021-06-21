@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
     <el-form
-      ref="loginForm"
+      ref="loginFormRef"
       :model="loginForm"
       :rules="loginRules"
       class="login-form"
@@ -100,11 +100,18 @@
 <script>
 import { validUsername } from '@/utils/validate';
 import SocialSign from './components/SocialSignin';
+import { onMounted, ref, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { nextTick } from 'process';
+import { useStore } from 'vuex';
 
 export default {
   name: 'Login',
   components: { SocialSign },
-  data() {
+  setup() {
+    const route = useRoute();
+    const router = useRouter();
+    const store = useStore();
     const validateUsername = (rule, value, callback) => {
       if (!validUsername(value)) {
         callback(new Error('Please enter the correct user name'));
@@ -119,115 +126,116 @@ export default {
         callback();
       }
     };
-    return {
-      loginForm: {
-        username: 'admin',
-        password: '111111',
-      },
-      loginRules: {
-        username: [
-          { required: true, trigger: 'blur', validator: validateUsername },
-        ],
-        password: [
-          { required: true, trigger: 'blur', validator: validatePassword },
-        ],
-      },
-      passwordType: 'password',
-      capsTooltip: false,
-      loading: false,
-      showDialog: false,
-      redirect: undefined,
-      otherQuery: {},
-    };
-  },
-  watch: {
-    $route: {
-      handler: function (route) {
-        const query = route.query;
-        if (query) {
-          this.redirect = query.redirect;
-          this.otherQuery = this.getOtherQuery(query);
-        }
-      },
-      immediate: true,
-    },
-  },
-  created() {
-    // window.addEventListener('storage', this.afterQRScan)
-  },
-  mounted() {
-    if (this.loginForm.username === '') {
-      this.$refs.username.focus();
-    } else if (this.loginForm.password === '') {
-      this.$refs.password.focus();
-    }
-  },
-  unmounted() {
-    // window.removeEventListener('storage', this.afterQRScan)
-  },
-  methods: {
-    checkCapslock(e) {
-      const { key } = e;
-      this.capsTooltip = key && key.length === 1 && key >= 'A' && key <= 'Z';
-    },
-    showPwd() {
-      if (this.passwordType === 'password') {
-        this.passwordType = '';
-      } else {
-        this.passwordType = 'password';
-      }
-      this.$nextTick(() => {
-        this.$refs.password.focus();
-      });
-    },
-    handleLogin() {
-      this.$refs.loginForm.validate((valid) => {
-        if (valid) {
-          this.loading = true;
-          this.$store
-            .dispatch('user/login', this.loginForm)
-            .then(() => {
-              this.$router.push({
-                path: this.redirect || '/',
-                query: this.otherQuery,
-              });
-              this.loading = false;
-            })
-            .catch(() => {
-              this.loading = false;
-            });
-        } else {
-          console.log('error submit!!');
-          return false;
-        }
-      });
-    },
-    getOtherQuery(query) {
+
+    const username = ref(null);
+    const password = ref(null);
+    const loginFormRef = ref(null);
+
+    const loginForm = ref({
+      username: 'admin',
+      password: '111111',
+    });
+    const loginRules = ref({
+      username: [
+        { required: true, trigger: 'blur', validator: validateUsername },
+      ],
+      password: [
+        { required: true, trigger: 'blur', validator: validatePassword },
+      ],
+    });
+    const passwordType = ref('password');
+    const capsTooltip = ref(false);
+    const loading = ref(false);
+    const showDialog = ref(false);
+    const redirect = ref(undefined);
+    const otherQuery = ref({});
+
+    const getOtherQuery = (query) => {
       return Object.keys(query).reduce((acc, cur) => {
         if (cur !== 'redirect') {
           acc[cur] = query[cur];
         }
         return acc;
       }, {});
-    },
-    // afterQRScan() {
-    //   if (e.key === 'x-admin-oauth-code') {
-    //     const code = getQueryObject(e.newValue)
-    //     const codeMap = {
-    //       wechat: 'code',
-    //       tencent: 'code'
-    //     }
-    //     const type = codeMap[this.auth_type]
-    //     const codeName = code[type]
-    //     if (codeName) {
-    //       this.$store.dispatch('LoginByThirdparty', codeName).then(() => {
-    //         this.$router.push({ path: this.redirect || '/' })
-    //       })
-    //     } else {
-    //       alert('第三方登录失败')
-    //     }
-    //   }
-    // }
+    };
+
+    watch(
+      () => route,
+      (val) => {
+        const query = val.query;
+        if (query) {
+          redirect.value = query.redirect;
+          otherQuery.value = getOtherQuery(query);
+        }
+      },
+      {
+        immediate: true,
+      },
+    );
+
+    onMounted(() => {
+      if (loginForm.value.username === '') {
+        username.value.focus();
+      } else if (loginForm.value.password === '') {
+        password.value.focus();
+      }
+    });
+
+    const checkCapslock = (e) => {
+      const { key } = e;
+      capsTooltip.value = key && key.length === 1 && key >= 'A' && key <= 'Z';
+    };
+
+    const showPwd = () => {
+      if (passwordType.value === 'password') {
+        passwordType.value = '';
+      } else {
+        passwordType.value = 'password';
+      }
+      nextTick(() => {
+        password.value.focus();
+      });
+    };
+
+    const handleLogin = () => {
+      loginFormRef.value.validate((valid) => {
+        if (valid) {
+          loading.value = true;
+          store
+            .dispatch('user/login', loginForm.value)
+            .then(() => {
+              router.push({
+                path: redirect.value || '/',
+                query: otherQuery.value,
+              });
+              loading.value = false;
+            })
+            .catch(() => {
+              loading.value = false;
+            });
+        } else {
+          console.log('error submit!!');
+          return false;
+        }
+      });
+    };
+
+    return {
+      username,
+      password,
+      loginForm,
+      loginRules,
+      passwordType,
+      capsTooltip,
+      loading,
+      showDialog,
+      redirect,
+      otherQuery,
+      checkCapslock,
+      showPwd,
+      handleLogin,
+      getOtherQuery,
+    };
   },
 };
 </script>

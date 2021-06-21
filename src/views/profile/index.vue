@@ -27,36 +27,46 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { useStore } from 'vuex';
 import UserCard from './components/UserCard';
 import Activity from './components/Activity';
 import Timeline from './components/Timeline';
 import Account from './components/Account';
+import { computed, onBeforeMount, ref } from 'vue';
 
 export default {
   name: 'Profile',
   components: { UserCard, Activity, Timeline, Account },
-  data() {
-    return {
-      user: {},
-      activeTab: 'activity',
-    };
-  },
-  computed: {
-    ...mapGetters(['name', 'avatar', 'roles']),
-  },
-  created() {
-    this.getUser();
-  },
-  methods: {
-    getUser() {
-      this.user = {
-        name: this.name,
-        role: this.roles.join(' | '),
+  setup() {
+    const store = useStore();
+
+    const user = ref({});
+    const activeTab = ref('activity');
+
+    const name = computed(() => store.getters.name);
+    const avatar = computed(() => store.getters.avatar);
+    const roles = computed(() => store.getters.roles);
+
+    const getUser = () => {
+      user.value = {
+        name: name.value,
+        role: roles.value.join(' | '),
         email: 'admin@test.com',
-        avatar: this.avatar,
+        avatar: avatar.value,
       };
-    },
+    };
+
+    onBeforeMount(() => {
+      getUser();
+    });
+
+    return {
+      user,
+      activeTab,
+      name,
+      avatar,
+      roles,
+    };
   },
 };
 </script>
