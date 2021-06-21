@@ -1,6 +1,6 @@
 <template>
   <el-card style="margin-bottom: 20px">
-    <template v-slot:header>
+    <template #header>
       <div class="clearfix">
         <span>About me</span>
       </div>
@@ -21,7 +21,7 @@
       <div class="box-center">
         <div class="user-name text-center">{{ user.name }}</div>
         <div class="user-role text-center text-muted">
-          {{ user.role | uppercaseFirst }}
+          {{ user.role }}
         </div>
       </div>
     </div>

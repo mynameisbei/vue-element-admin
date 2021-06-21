@@ -34,8 +34,8 @@ export default {
 
     watch(
       defaultTheme,
-      (val) => {
-        theme.value = val.value;
+      (val = '') => {
+        theme.value = val?.value;
       },
       {
         immediate: true,

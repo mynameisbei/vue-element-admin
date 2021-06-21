@@ -86,7 +86,7 @@
       </div>
     </el-form>
 
-    <el-dialog title="Or connect with" v-model:visible="showDialog">
+    <el-dialog v-model:visible="showDialog" title="Or connect with">
       Can not be simulated on local, so please combine you own business
       simulation! ! !
       <br />

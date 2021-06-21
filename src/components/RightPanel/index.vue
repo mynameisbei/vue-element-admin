@@ -1,24 +1,26 @@
 <template>
-  <div ref="rightPanel" :class="{ show: show }" class="rightPanel-container">
-    <div class="rightPanel-background" />
-    <div class="rightPanel">
-      <div
-        class="handle-button"
-        :style="{ top: buttonTop + 'px', 'background-color': theme }"
-        @click="show = !show"
-      >
-        <i :class="show ? 'el-icon-close' : 'el-icon-setting'" />
-      </div>
-      <div class="rightPanel-items">
-        <slot />
+  <teleport to="body">
+    <div :class="{ show: show }" class="rightPanel-container">
+      <div class="rightPanel-background" />
+      <div class="rightPanel">
+        <div
+          class="handle-button"
+          :style="{ top: buttonTop + 'px', 'background-color': theme }"
+          @click="show = !show"
+        >
+          <i :class="show ? 'el-icon-close' : 'el-icon-setting'" />
+        </div>
+        <div class="rightPanel-items">
+          <slot />
+        </div>
       </div>
     </div>
-  </div>
+  </teleport>
 </template>
 
 <script>
 import { addClass, removeClass } from '@/utils';
-import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { useStore } from 'vuex';
 
 export default {
@@ -33,17 +35,16 @@ export default {
       type: Number,
     },
   },
-  setup(props) {
+  setup() {
     const store = useStore();
     const show = ref(false);
-    const rightPanel = ref(null);
 
     const theme = computed(() => store.state.settings.theme);
 
     watch(show, (val) => {
-      if (val && !props.clickNotClose) {
-        addEventClick();
-      }
+      // if (val && !props.clickNotClose) {
+      //   addEventClick();
+      // }
       if (val) {
         addClass(document.body, 'showRightPanel');
       } else {
@@ -51,35 +52,20 @@ export default {
       }
     });
 
-    onMounted(() => {
-      insertToBody();
-    });
-
-    onBeforeUnmount(() => {
-      const elx = rightPanel.value;
-      elx.remove();
-    });
-
-    const addEventClick = () => {
-      window.addEventListener('click', closeSidebar);
-    };
-    const closeSidebar = (evt) => {
-      const parent = evt.target.closest('.rightPanel');
-      if (!parent) {
-        show.value = false;
-        window.removeEventListener('click', closeSidebar);
-      }
-    };
-    const insertToBody = () => {
-      const elx = rightPanel.value;
-      const body = document.querySelector('body');
-      body.insertBefore(elx, body.firstChild);
-    };
+    // const addEventClick = () => {
+    //   window.addEventListener('click', closeSidebar);
+    // };
+    // const closeSidebar = (evt) => {
+    //   const parent = evt.target.closest('.rightPanel');
+    //   if (!parent) {
+    //     show.value = false;
+    //     window.removeEventListener('click', closeSidebar);
+    //   }
+    // };
 
     return {
       show,
       theme,
-      rightPanel,
     };
   },
 };

@@ -95,8 +95,8 @@ export function useChart(options, el) {
 
   onBeforeUnmount(() => {
     if (chart.value) {
-      this.chart.value.dispose();
-      this.chart.value = null;
+      chart.value.dispose();
+      chart.value = null;
     }
   });
 
