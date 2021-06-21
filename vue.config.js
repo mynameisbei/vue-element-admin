@@ -66,7 +66,7 @@ module.exports = {
     // ]);
 
     // when there are many pages, it will cause too many meaningless requests
-    config.plugins.delete('prefetch');
+    // config.plugins.delete('prefetch');
 
     // set svg-sprite-loader
     config.module.rule('svg').exclude.add(resolve('src/icons')).end();
@@ -83,16 +83,16 @@ module.exports = {
       .end();
 
     config.when(process.env.NODE_ENV !== 'development', (config) => {
-      config
-        .plugin('ScriptExtHtmlWebpackPlugin')
-        .after('html')
-        .use('script-ext-html-webpack-plugin', [
-          {
-            // `runtime` must same as runtimeChunk name. default is `runtime`
-            inline: /runtime\..*\.js$/,
-          },
-        ])
-        .end();
+      // config
+      //   .plugin('ScriptExtHtmlWebpackPlugin')
+      //   .after('html')
+      //   .use('script-ext-html-webpack-plugin', [
+      //     {
+      //       // `runtime` must same as runtimeChunk name. default is `runtime`
+      //       inline: /runtime\..*\.js$/,
+      //     },
+      //   ])
+      //   .end();
       config.optimization.splitChunks({
         chunks: 'all',
         cacheGroups: {

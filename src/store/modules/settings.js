@@ -3,8 +3,6 @@ import defaultSettings from '@/settings';
 
 const { showSettings, tagsView, fixedHeader, sidebarLogo } = defaultSettings;
 
-console.log(variables);
-
 const state = {
   theme: variables.theme,
   showSettings: showSettings,
