@@ -25,8 +25,8 @@
 
 <script>
 import { useStore } from 'vuex';
-import PanThumb from '@/components/PanThumb';
-import GithubCorner from '@/components/GithubCorner';
+import PanThumb from '@/components/PanThumb/index.vue';
+import GithubCorner from '@/components/GithubCorner/index.vue';
 import { computed } from 'vue';
 
 export default {

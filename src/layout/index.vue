@@ -20,8 +20,14 @@
 </template>
 
 <script>
-import RightPanel from '@/components/RightPanel';
-import { AppMain, Navbar, Settings, Sidebar, TagsView } from './components';
+import RightPanel from '@/components/RightPanel/index.vue';
+import {
+  AppMain,
+  Navbar,
+  Settings,
+  Sidebar,
+  TagsView,
+} from './components/index';
 import { computed, onBeforeUnmount, onMounted, watch } from 'vue';
 import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
@@ -64,6 +70,17 @@ export default {
       },
     );
 
+    const $_resizeHandler = () => {
+      if (!document.hidden) {
+        const isMobile = $_isMobile();
+        store.dispatch('app/toggleDevice', isMobile ? 'mobile' : 'desktop');
+
+        if (isMobile) {
+          store.dispatch('app/closeSideBar', { withoutAnimation: true });
+        }
+      }
+    };
+
     window.addEventListener('resize', $_resizeHandler);
 
     onMounted(() => {
@@ -89,17 +106,6 @@ export default {
       return rect.width - 1 < WIDTH;
     };
 
-    const $_resizeHandler = () => {
-      if (!document.hidden) {
-        const isMobile = $_isMobile();
-        store.dispatch('app/toggleDevice', isMobile ? 'mobile' : 'desktop');
-
-        if (isMobile) {
-          store.dispatch('app/closeSideBar', { withoutAnimation: true });
-        }
-      }
-    };
-
     return {
       sidebar,
       device,
@@ -114,8 +120,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~@/styles/mixin.scss';
-@import '~@/styles/variables.module.scss';
+@import '@/styles/mixin.scss';
+@import '@/styles/variables.module.scss';
 
 .app-wrapper {
   @include clearfix;

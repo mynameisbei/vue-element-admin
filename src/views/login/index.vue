@@ -99,7 +99,7 @@
 
 <script>
 import { validUsername } from '@/utils/validate';
-import SocialSign from './components/SocialSignin';
+import SocialSign from './components/SocialSignin.vue';
 import { onMounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { nextTick } from 'process';
@@ -221,6 +221,7 @@ export default {
     };
 
     return {
+      loginFormRef,
       username,
       password,
       loginForm,

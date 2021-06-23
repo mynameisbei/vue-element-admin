@@ -28,10 +28,10 @@
 
 <script>
 import { useStore } from 'vuex';
-import UserCard from './components/UserCard';
-import Activity from './components/Activity';
-import Timeline from './components/Timeline';
-import Account from './components/Account';
+import UserCard from './components/UserCard.vue';
+import Activity from './components/Activity.vue';
+import Timeline from './components/Timeline.vue';
+import Account from './components/Account.vue';
 import { computed, onBeforeMount, ref } from 'vue';
 
 export default {

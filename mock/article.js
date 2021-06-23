@@ -1,4 +1,4 @@
-const Mock = require('mockjs');
+import Mock from 'mockjs';
 
 const List = [];
 const count = 100;
@@ -31,7 +31,7 @@ for (let i = 0; i < count; i++) {
   );
 }
 
-module.exports = [
+export default [
   {
     url: '/vue-element-admin/article/list',
     type: 'get',
@@ -89,7 +89,7 @@ module.exports = [
   {
     url: '/vue-element-admin/article/pv',
     type: 'get',
-    response: (_) => {
+    response: () => {
       return {
         code: 20000,
         data: {
@@ -107,7 +107,7 @@ module.exports = [
   {
     url: '/vue-element-admin/article/create',
     type: 'post',
-    response: (_) => {
+    response: () => {
       return {
         code: 20000,
         data: 'success',
@@ -118,7 +118,7 @@ module.exports = [
   {
     url: '/vue-element-admin/article/update',
     type: 'post',
-    response: (_) => {
+    response: () => {
       return {
         code: 20000,
         data: 'success',

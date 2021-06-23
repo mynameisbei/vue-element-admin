@@ -9,7 +9,7 @@ export default function (app) {
   const { errorLog: needErrorLog } = settings;
 
   function checkNeed() {
-    const env = process.env.NODE_ENV;
+    const env = import.meta.env.NODE_ENV;
     if (isString(needErrorLog)) {
       return env === needErrorLog;
     }

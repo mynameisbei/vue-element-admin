@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import DropdownMenu from '@/components/Share/DropdownMenu';
+import DropdownMenu from '@/components/Share/DropdownMenu.vue';
 
 export default {
   name: 'Documentation',

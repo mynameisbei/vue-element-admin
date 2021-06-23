@@ -20,7 +20,7 @@
 import { computed, ref, watch } from 'vue';
 import { useStore } from 'vuex';
 import { ElMessage } from 'element-plus';
-const version = require('element-plus/package.json').version; // element-ui version from node_modules
+const version = import('element-plus/package.json').version; // element-ui version from node_modules
 const ORIGINAL_THEME = '#409EFF'; // default color
 
 export default {

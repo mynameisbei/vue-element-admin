@@ -61,12 +61,12 @@
 </template>
 
 <script>
-import Breadcrumb from '@/components/Breadcrumb';
-import Hamburger from '@/components/Hamburger';
-import ErrorLog from '@/components/ErrorLog';
-import Screenfull from '@/components/Screenfull';
+import Breadcrumb from '@/components/Breadcrumb/index.vue';
+import Hamburger from '@/components/Hamburger/index.vue';
+import ErrorLog from '@/components/ErrorLog/index.vue';
+import Screenfull from '@/components/Screenfull/index.vue';
 // import SizeSelect from '@/components/SizeSelect';
-import Search from '@/components/HeaderSearch';
+import Search from '@/components/HeaderSearch/index.vue';
 import { useStore } from 'vuex';
 import { computed } from 'vue';
 import { useRouter } from 'vue-router';

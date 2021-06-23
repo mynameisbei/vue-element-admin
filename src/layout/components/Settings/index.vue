@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import ThemePicker from '@/components/ThemePicker';
+import ThemePicker from '@/components/ThemePicker/index.vue';
 import { computed } from 'vue';
 import { useStore } from 'vuex';
 

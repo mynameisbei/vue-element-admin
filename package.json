@@ -9,6 +9,8 @@
     "build:prod": "vue-cli-service build",
     "build:stage": "vue-cli-service build --mode staging",
     "preview": "node build/index.js --preview",
+    "v:serve": "vite serve",
+    "v:build": "vite build",
     "test:unit": "jest --clearCache && vue-cli-service test:unit"
   },
   "dependencies": {
@@ -34,6 +36,7 @@
     "@babel/eslint-parser": "^7.14.5",
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
+    "@vitejs/plugin-vue": "^1.2.3",
     "@vue/cli-plugin-babel": "^5.0.0-beta.2",
     "@vue/cli-plugin-eslint": "^5.0.0-beta.2",
     "@vue/cli-plugin-unit-jest": "^5.0.0-beta.2",
@@ -66,7 +69,9 @@
     "script-ext-html-webpack-plugin": "^2.1.5",
     "serve-static": "^1.14.1",
     "svg-sprite-loader": "^6.0.7",
-    "tasksfile": "^5.1.1"
+    "tasksfile": "^5.1.1",
+    "vite": "^2.3.8",
+    "vite-plugin-mock": "^2.8.0"
   },
   "engines": {
     "node": ">=8.9",

@@ -526,7 +526,4 @@ const asyncRoutes = [
   },
 ];
 
-module.exports = {
-  constantRoutes,
-  asyncRoutes,
-};
+export { constantRoutes, asyncRoutes };

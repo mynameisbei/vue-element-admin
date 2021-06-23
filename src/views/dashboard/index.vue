@@ -6,8 +6,8 @@
 
 <script>
 import { useStore } from 'vuex';
-import adminDashboard from './admin';
-import editorDashboard from './editor';
+import adminDashboard from './admin/index.vue';
+import editorDashboard from './editor/index.vue';
 import { computed, ref } from 'vue';
 
 export default {

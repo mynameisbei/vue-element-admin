@@ -32,8 +32,8 @@
 
 <script>
 import { useStore } from 'vuex';
-import PanThumb from '@/components/PanThumb';
-import Mallki from '@/components/TextHoverEffect/Mallki';
+import PanThumb from '@/components/PanThumb/index.vue';
+import Mallki from '@/components/TextHoverEffect/Mallki.vue';
 import { computed } from 'vue';
 
 export default {
