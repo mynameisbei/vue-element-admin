@@ -1,3 +1,6 @@
+import ElMessage from 'element-plus/lib/el-message';
+import ElMessageBox from 'element-plus/lib/el-message-box';
+
 /**
  * Created by PanJiaChen on 16/11/18.
  */
@@ -357,3 +360,7 @@ export function removeClass(ele, cls) {
     ele.className = ele.className.replace(reg, ' ');
   }
 }
+
+export const message = ElMessage;
+
+export const messageBox = ElMessageBox;

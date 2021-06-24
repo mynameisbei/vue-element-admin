@@ -10,7 +10,7 @@
 <script>
 import screenfull from 'screenfull';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
-import { ElMessage } from 'element-plus';
+import { message } from '@/utils';
 
 export default {
   name: 'Screenfull',
@@ -26,7 +26,7 @@ export default {
 
     const click = () => {
       if (!screenfull.enabled) {
-        ElMessage({
+        message({
           message: 'you browser can not work',
           type: 'warning',
         });

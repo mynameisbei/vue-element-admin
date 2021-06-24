@@ -19,8 +19,7 @@
 <script>
 import { computed, ref, watch } from 'vue';
 import { useStore } from 'vuex';
-import { ElMessage } from 'element-plus';
-const version = import('element-plus/package.json').version; // element-ui version from node_modules
+import { message } from '@/utils';
 const ORIGINAL_THEME = '#409EFF'; // default color
 
 export default {
@@ -49,7 +48,7 @@ export default {
       const originalCluster = getThemeCluster(oldVal.replace('#', ''));
       console.log(themeCluster, originalCluster);
 
-      const $message = ElMessage({
+      const $message = message({
         message: '  Compiling the theme',
         customClass: 'theme-message',
         type: 'success',
@@ -75,7 +74,7 @@ export default {
       };
 
       if (!chalk.value) {
-        const url = `https://unpkg.com/element-ui@${version}/lib/theme-chalk/index.css`;
+        const url = `https://unpkg.com/element-plus@${ELEMENT_VERSION}/lib/theme-chalk/index.css`;
         await getCSSString(url);
       }
 

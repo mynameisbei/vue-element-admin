@@ -19,4 +19,8 @@ module.exports = {
   rules: {
     'vue/no-mutating-props': 'off',
   },
+  globals: {
+    globalThis: true,
+    ELEMENT_VERSION: true,
+  },
 };

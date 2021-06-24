@@ -1,6 +1,6 @@
 import router from './router';
 import store from './store';
-import { ElMessage as Message } from 'element-plus';
+import { message } from './utils';
 import NProgress from 'nprogress'; // progress bar
 import 'nprogress/nprogress.css'; // progress bar style
 import { getToken } from '@/utils/auth'; // get token from cookie
@@ -54,7 +54,7 @@ router.beforeEach(async (to, from, next) => {
           console.log(error);
           // remove token and go to login page to re-login
           await store.dispatch('user/resetToken');
-          Message.error(error || 'Has Error');
+          message.error(error || 'Has Error');
           next(`/login?redirect=${to.path}`);
           NProgress.done();
         }

@@ -1,11 +1,12 @@
 import { createApp } from 'vue';
 
 import 'normalize.css/normalize.css'; // a modern alternative to CSS resets
-import ElementPlus from 'element-plus';
-import 'element-plus/lib/theme-chalk/index.css';
+import 'element-plus/packages/theme-chalk/src/base.scss';
+import locale from 'element-plus/lib/locale';
+import ElComponents from './element-components';
 
 import 'dayjs/locale/zh-cn';
-import locale from 'element-plus/lib/locale/lang/zh-cn';
+import lang from 'element-plus/lib/locale/lang/zh-cn';
 
 import '@/styles/index.scss'; // global css
 
@@ -24,8 +25,14 @@ import './permission'; // permission control
 const app = createApp(App);
 errorHandle(app);
 
+locale.use(lang);
+
+ElComponents.forEach((i) => {
+  app.use(i);
+});
+
 app.component('SvgIcon', SvgIcon);
-app.use(store).use(router).use(ElementPlus, { locale }).mount('#app');
+app.use(store).use(router).mount('#app');
 
 // // register global utility filters
 // Object.keys(filters).forEach(key => {

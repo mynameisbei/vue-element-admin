@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { ElMessage } from 'element-plus';
+import { message } from '@/utils';
 
 export default {
   props: {
@@ -29,7 +29,7 @@ export default {
   },
   setup() {
     const submit = () => {
-      ElMessage.success({
+      message.success({
         message: 'User information has been updated successfully',
         duration: 5 * 1000,
       });
