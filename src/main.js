@@ -12,7 +12,7 @@ import '@/styles/index.scss'; // global css
 import App from './App.vue';
 import store from './store';
 import router from './router';
-import './icons'; // icon
+import 'virtual:svg-icons-register';
 
 import SvgIcon from '@/components/SvgIcon/index.vue'; // svg component
 import errorHandle from '@/utils/error-log';

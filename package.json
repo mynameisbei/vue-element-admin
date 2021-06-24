@@ -52,7 +52,8 @@
     "rollup": "^2.52.2",
     "sass": "^1.35.1",
     "vite": "^2.3.8",
-    "vite-plugin-mock": "^2.8.0"
+    "vite-plugin-mock": "^2.8.0",
+    "vite-plugin-svg-icons": "^0.7.1"
   },
   "engines": {
     "node": ">=8.9",
