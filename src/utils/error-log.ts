@@ -1,19 +1,19 @@
-import { nextTick } from 'vue';
+import { nextTick, App } from 'vue';
 import store from '@/store';
-import { isString, isArray } from '@/utils/validate';
+import { isString } from 'lodash';
 import settings from '@/settings';
 
-export default function (app) {
+export default function (app: App<Element>): void {
   // you can set in settings.js
   // errorLog:'production' | ['production', 'development']
   const { errorLog: needErrorLog } = settings;
 
   function checkNeed() {
-    const env = import.meta.env.NODE_ENV;
+    const env = (import.meta.env.NODE_ENV as string) ?? '';
     if (isString(needErrorLog)) {
       return env === needErrorLog;
     }
-    if (isArray(needErrorLog)) {
+    if (Array.isArray(needErrorLog)) {
       return needErrorLog.includes(env);
     }
     return false;

@@ -27,7 +27,7 @@ errorHandle(app);
 
 locale.use(lang);
 
-ElComponents.forEach((i) => {
+ElComponents.forEach((i: any) => {
   app.use(i);
 });
 

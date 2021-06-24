@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 
 /* Layout */
 import Layout from '@/layout/index.vue';
@@ -24,12 +24,21 @@ import Layout from '@/layout/index.vue';
   }
  */
 
+interface RouteConfig {
+  hidden?: boolean;
+  meta?: {
+    [key: string]: any;
+  };
+}
+
+export type RouteRaw = RouteRecordRaw & RouteConfig;
+
 /**
  * constantRoutes
  * a base page that does not have permission requirements
  * all roles can be accessed
  */
-export const constantRoutes = [
+export const constantRoutes: RouteRaw[] = [
   {
     path: '/redirect',
     component: Layout,
@@ -106,12 +115,7 @@ export const constantRoutes = [
  * asyncRoutes
  * the routes that need to be dynamically loaded based on user roles
  */
-export const asyncRoutes = [
-  {
-    name: 'NotFound',
-    path: '/404',
-  },
-];
+export const asyncRoutes: RouteRaw[] = [];
 
 const _createRouter = () =>
   createRouter({
@@ -121,11 +125,5 @@ const _createRouter = () =>
   });
 
 const router = _createRouter();
-
-// Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
-export function resetRouter() {
-  const newRouter = _createRouter();
-  router.matcher = newRouter.matcher; // reset router
-}
 
 export default router;

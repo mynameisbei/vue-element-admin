@@ -5,12 +5,17 @@
  * @param {Number} w
  * @param {Number} h
  */
-export default function openWindow(url, title, w, h) {
+export default function openWindow(
+  url: string,
+  title: string,
+  w: number,
+  h: number,
+): void {
   // Fixes dual-screen position                            Most browsers       Firefox
   const dualScreenLeft =
-    window.screenLeft !== undefined ? window.screenLeft : screen.left;
+    window.screenLeft !== undefined ? window.screenLeft : (screen as any).left;
   const dualScreenTop =
-    window.screenTop !== undefined ? window.screenTop : screen.top;
+    window.screenTop !== undefined ? window.screenTop : (screen as any).top;
 
   const width = window.innerWidth
     ? window.innerWidth
@@ -39,7 +44,5 @@ export default function openWindow(url, title, w, h) {
   );
 
   // Puts focus on the newWindow
-  if (window.focus) {
-    newWindow.focus();
-  }
+  newWindow?.focus();
 }

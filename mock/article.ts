@@ -1,4 +1,5 @@
 import Mock from 'mockjs';
+import { MockMethod } from 'vite-plugin-mock';
 
 const List = [];
 const count = 100;
@@ -34,7 +35,7 @@ for (let i = 0; i < count; i++) {
 export default [
   {
     url: '/vue-element-admin/article/list',
-    type: 'get',
+    method: 'get',
     response: (config) => {
       const {
         importance,
@@ -72,7 +73,7 @@ export default [
 
   {
     url: '/vue-element-admin/article/detail',
-    type: 'get',
+    method: 'get',
     response: (config) => {
       const { id } = config.query;
       for (const article of List) {
@@ -88,7 +89,7 @@ export default [
 
   {
     url: '/vue-element-admin/article/pv',
-    type: 'get',
+    method: 'get',
     response: () => {
       return {
         code: 20000,
@@ -106,7 +107,7 @@ export default [
 
   {
     url: '/vue-element-admin/article/create',
-    type: 'post',
+    method: 'post',
     response: () => {
       return {
         code: 20000,
@@ -117,7 +118,7 @@ export default [
 
   {
     url: '/vue-element-admin/article/update',
-    type: 'post',
+    method: 'post',
     response: () => {
       return {
         code: 20000,
@@ -125,4 +126,4 @@ export default [
       };
     },
   },
-];
+] as MockMethod[];

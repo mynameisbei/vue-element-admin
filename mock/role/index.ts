@@ -1,8 +1,9 @@
 import Mock from 'mockjs';
-import { deepClone } from '@/utils';
+import { MockMethod } from 'vite-plugin-mock';
+import { cloneDeep } from 'lodash';
 import { asyncRoutes, constantRoutes } from './routes.js';
 
-const routes = deepClone([...constantRoutes, ...asyncRoutes]);
+const routes = cloneDeep([...constantRoutes, ...asyncRoutes]);
 
 const roles = [
   {
@@ -42,7 +43,7 @@ export default [
   // mock get all routes form server
   {
     url: '/vue-element-admin/routes',
-    type: 'get',
+    method: 'get',
     response: () => {
       return {
         code: 20000,
@@ -54,7 +55,7 @@ export default [
   // mock get all roles form server
   {
     url: '/vue-element-admin/roles',
-    type: 'get',
+    method: 'get',
     response: () => {
       return {
         code: 20000,
@@ -66,7 +67,7 @@ export default [
   // add role
   {
     url: '/vue-element-admin/role',
-    type: 'post',
+    method: 'post',
     response: {
       code: 20000,
       data: {
@@ -78,7 +79,7 @@ export default [
   // update role
   {
     url: '/vue-element-admin/role/[A-Za-z0-9]',
-    type: 'put',
+    method: 'put',
     response: {
       code: 20000,
       data: {
@@ -90,7 +91,7 @@ export default [
   // delete role
   {
     url: '/vue-element-admin/role/[A-Za-z0-9]',
-    type: 'delete',
+    method: 'delete',
     response: {
       code: 20000,
       data: {
@@ -98,4 +99,4 @@ export default [
       },
     },
   },
-];
+] as MockMethod[];

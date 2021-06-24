@@ -1,4 +1,4 @@
-import { debounce } from '@/utils';
+import { debounce } from 'lodash';
 import echarts from 'echarts';
 import('echarts/theme/macarons'); // echarts theme
 
@@ -12,11 +12,13 @@ import {
   nextTick,
   watch,
   unref,
+  Ref,
 } from 'vue';
+import { noop } from 'lodash';
 
-export function useResize(chart) {
-  const $_sidebarElm = ref(null);
-  const $_resizeHandler = ref(null);
+export function useResize(chart: Ref<Record<string, any>>): void {
+  const $_sidebarElm = ref<Element>();
+  const $_resizeHandler = ref<() => any>(noop);
 
   onMounted(() => {
     $_resizeHandler.value = debounce(() => {
@@ -59,13 +61,15 @@ export function useResize(chart) {
     }
   };
   const $_initSidebarResizeEvent = () => {
-    $_sidebarElm.value =
-      document.getElementsByClassName('sidebar-container')[0];
-    $_sidebarElm.value &&
-      $_sidebarElm.value.addEventListener(
-        'transitionend',
-        $_sidebarResizeHandler,
-      );
+    if ($_sidebarElm.value) {
+      $_sidebarElm.value =
+        document.querySelector('.sidebar-container') || undefined;
+      $_sidebarElm.value &&
+        $_sidebarElm.value.addEventListener(
+          'transitionend',
+          $_sidebarResizeHandler,
+        );
+    }
   };
   const $_destroySidebarResizeEvent = () => {
     $_sidebarElm.value &&
@@ -76,8 +80,15 @@ export function useResize(chart) {
   };
 }
 
-export function useChart(options, el) {
-  const chart = markRaw(ref(null));
+export interface UserChartResult {
+  chart: Record<string, any>;
+}
+
+export function useChart(
+  options: Record<string, any>,
+  el: Ref<HTMLElement>,
+): UserChartResult {
+  const chart = markRaw(ref<Record<string, any>>());
 
   watch(
     () => options,
@@ -96,7 +107,7 @@ export function useChart(options, el) {
   onBeforeUnmount(() => {
     if (chart.value) {
       chart.value.dispose();
-      chart.value = null;
+      chart.value = undefined;
     }
   });
 
@@ -105,8 +116,8 @@ export function useChart(options, el) {
     setOptions(options);
   };
 
-  const setOptions = (params) => {
-    chart.value.setOption(unref(params));
+  const setOptions = (params: typeof options) => {
+    chart.value?.setOption(unref(params));
   };
 
   return {

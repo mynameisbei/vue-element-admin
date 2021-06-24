@@ -72,11 +72,6 @@ const constantRoutes = [
   },
 ];
 
-const asyncRoutes = [
-  {
-    name: 'NotFound',
-    path: '/404',
-  },
-];
+const asyncRoutes = [];
 
 export { constantRoutes, asyncRoutes };

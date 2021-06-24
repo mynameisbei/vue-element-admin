@@ -1,4 +1,5 @@
 import Mock from 'mockjs';
+import { MockMethod } from 'vite-plugin-mock';
 
 const NameList = [];
 const count = 100;
@@ -16,7 +17,7 @@ export default [
   // username search
   {
     url: '/vue-element-admin/search/user',
-    type: 'get',
+    method: 'get',
     response: (config) => {
       const { name } = config.query;
       const mockNameList = NameList.filter((item) => {
@@ -33,7 +34,7 @@ export default [
   // transaction list
   {
     url: '/vue-element-admin/transaction/list',
-    type: 'get',
+    method: 'get',
     response: () => {
       return {
         code: 20000,
@@ -52,4 +53,4 @@ export default [
       };
     },
   },
-];
+] as MockMethod[];

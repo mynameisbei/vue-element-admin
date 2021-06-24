@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { useResize, useChart } from '@/views/dashboard/composition';
+import { useResize, useChart } from '@/views/dashboard/composable';
 import { ref } from 'vue';
 
 export default {

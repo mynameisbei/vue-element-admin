@@ -1,3 +1,4 @@
+import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import viteSvgIcons from 'vite-plugin-svg-icons';
 import { viteMockServe } from 'vite-plugin-mock';
@@ -6,13 +7,15 @@ import styleImport from 'vite-plugin-style-import';
 import fs from 'fs';
 
 const getElementVersion = () => {
-  const content = fs.readFileSync('node_modules/element-plus/package.json');
+  const content = fs
+    .readFileSync('node_modules/element-plus/package.json')
+    .toString();
   const version = JSON.parse(content).version;
   return JSON.stringify(version);
 };
 
 // https://vitejs.dev/config/
-export default ({ command }) => {
+export default defineConfig(({ command }) => {
   return {
     define: {
       ELEMENT_VERSION: getElementVersion(),
@@ -56,4 +59,4 @@ export default ({ command }) => {
       }),
     ],
   };
-};
+});

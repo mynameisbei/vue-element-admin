@@ -1,3 +1,5 @@
+import { MockMethod } from 'vite-plugin-mock';
+
 const tokens = {
   admin: {
     token: 'admin-token',
@@ -28,7 +30,7 @@ export default [
   // user login
   {
     url: '/vue-element-admin/user/login',
-    type: 'post',
+    method: 'post',
     response: (config) => {
       const { username } = config.body;
       const token = tokens[username];
@@ -51,7 +53,7 @@ export default [
   // get user info
   {
     url: '/vue-element-admin/user/info',
-    type: 'get',
+    method: 'get',
     response: (config) => {
       const { token } = config.query;
       const info = users[token];
@@ -74,7 +76,7 @@ export default [
   // user logout
   {
     url: '/vue-element-admin/user/logout',
-    type: 'post',
+    method: 'post',
     response: () => {
       return {
         code: 20000,
@@ -82,4 +84,4 @@ export default [
       };
     },
   },
-];
+] as MockMethod[];

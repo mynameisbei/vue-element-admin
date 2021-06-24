@@ -1,4 +1,13 @@
-export default {
+interface Settings {
+  title: string;
+  showSettings: boolean;
+  tagsView: boolean;
+  fixedHeader: boolean;
+  sidebarLogo: boolean;
+  errorLog: string | string[];
+}
+
+const settings: Settings = {
   title: 'Vue Element Admin',
 
   /**
@@ -33,3 +42,5 @@ export default {
    */
   errorLog: 'production',
 };
+
+export default settings;

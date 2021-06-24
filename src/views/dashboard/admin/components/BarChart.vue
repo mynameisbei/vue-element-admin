@@ -4,7 +4,7 @@
 
 <script>
 import { ref } from 'vue';
-import { useChart, useResize } from '@/views/dashboard/composition';
+import { useChart, useResize } from '@/views/dashboard/composable';
 
 const animationDuration = 6000;
 

@@ -69,7 +69,7 @@ import Screenfull from '@/components/Screenfull/index.vue';
 import Search from '@/components/HeaderSearch/index.vue';
 import { useStore } from 'vuex';
 import { computed } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 export default {
   components: {
@@ -83,6 +83,7 @@ export default {
   setup() {
     const store = useStore();
     const router = useRouter();
+    const route = useRoute();
 
     const sidebar = computed(() => store.getters.sidebar);
     const avatar = computed(() => store.getters.avatar);
@@ -93,7 +94,7 @@ export default {
     };
     const logout = async () => {
       await store.dispatch('user/logout');
-      router.push(`/login?redirect=${this.$route.fullPath}`);
+      router.push(`/login?redirect=${route.fullPath}`);
     };
 
     return {

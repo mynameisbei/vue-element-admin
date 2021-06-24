@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { useChart, useResize } from '@/views/dashboard/composition';
+import { useChart, useResize } from '@/views/dashboard/composable';
 import { ref } from 'vue';
 
 const animationDuration = 3000;

@@ -4,7 +4,7 @@
 
 <script>
 import { computed, ref, toRefs } from 'vue';
-import { useChart, useResize } from '@/views/dashboard/composition';
+import { useChart, useResize } from '@/views/dashboard/composable';
 
 export default {
   props: {
