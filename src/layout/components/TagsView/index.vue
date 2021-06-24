@@ -46,10 +46,9 @@
 <script>
 import ScrollPane from './ScrollPane.vue';
 import path from 'path-browserify';
-import { computed, onMounted, ref, watch } from 'vue';
+import { computed, onMounted, ref, watch, nextTick } from 'vue';
 import { useStore } from 'vuex';
 import { useRoute, useRouter } from 'vue-router';
-import { nextTick } from 'process';
 
 export default {
   components: { ScrollPane },

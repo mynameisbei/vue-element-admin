@@ -100,9 +100,8 @@
 <script>
 import { validUsername } from '@/utils/validate';
 import SocialSign from './components/SocialSignin.vue';
-import { onMounted, ref, watch } from 'vue';
+import { onMounted, ref, watch, nextTick } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { nextTick } from 'process';
 import { useStore } from 'vuex';
 
 export default {
