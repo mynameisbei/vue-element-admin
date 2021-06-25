@@ -61,16 +61,6 @@ export const constantRoutes: RouteRaw[] = [
     hidden: true,
   },
   {
-    path: '/404',
-    component: () => import('@/views/error-page/404.vue'),
-    hidden: true,
-  },
-  {
-    path: '/401',
-    component: () => import('@/views/error-page/401.vue'),
-    hidden: true,
-  },
-  {
     path: '/',
     component: Layout,
     redirect: '/dashboard',
@@ -108,6 +98,16 @@ export const constantRoutes: RouteRaw[] = [
         meta: { title: 'Profile', icon: 'user', noCache: true },
       },
     ],
+  },
+  {
+    path: '/401',
+    component: () => import('@/views/error-page/401.vue'),
+    hidden: true,
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: () => import('@/views/error-page/404.vue'),
   },
 ];
 
