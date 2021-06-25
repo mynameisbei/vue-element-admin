@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import { RouteRaw } from '@/router';
-import * as pathToRegexp from 'path-to-regexp';
+import { compile } from 'path-to-regexp';
 import { defineComponent, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
@@ -48,7 +48,7 @@ export default defineComponent({
     const pathCompile = (path) => {
       // To solve this problem https://github.com/PanJiaChen/vue-element-admin/issues/561
       const { params } = route;
-      var toPath = pathToRegexp.compile(path);
+      var toPath = compile(path);
       return toPath(params);
     };
     const handleLink = (item) => {

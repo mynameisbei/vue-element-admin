@@ -29,7 +29,7 @@ specifiers:
   husky: ^6.0.0
   js-cookie: ^2.2.1
   lint-staged: ^11.0.0
-  lodash: ^4.17.21
+  lodash-es: ^4.17.21
   mockjs: ^1.1.0
   normalize.css: ^8.0.1
   nprogress: ^0.2.0
@@ -61,7 +61,7 @@ dependencies:
   element-plus: registry.nlark.com/element-plus/1.0.2-beta.52_vue@3.1.1
   fuse.js: 6.4.6
   js-cookie: 2.2.1
-  lodash: 4.17.21
+  lodash-es: registry.nlark.com/lodash-es/4.17.21
   normalize.css: 8.0.1
   nprogress: 0.2.0
   path-to-regexp: 6.2.0
@@ -4452,6 +4452,12 @@ packages:
       through: 2.3.8
       wrap-ansi: 7.0.0
     dev: true
+
+  registry.nlark.com/lodash-es/4.17.21:
+    resolution: {integrity: sha1-Q+YmxG5lkbd1C+srUBFzkMYJ4+4=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/lodash-es/download/lodash-es-4.17.21.tgz}
+    name: lodash-es
+    version: 4.17.21
+    dev: false
 
   registry.nlark.com/lodash.camelcase/4.3.0:
     resolution: {integrity: sha1-soqmKIorn8ZRA1x3EfZathkDMaY=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/lodash.camelcase/download/lodash.camelcase-4.3.0.tgz}

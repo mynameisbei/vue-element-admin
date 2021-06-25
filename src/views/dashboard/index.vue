@@ -9,6 +9,7 @@ import { useStore } from 'vuex';
 import adminDashboard from './admin/index.vue';
 import editorDashboard from './editor/index.vue';
 import { computed, defineComponent, ref } from 'vue';
+import('echarts/theme/macarons'); // echarts theme
 
 export default defineComponent({
   name: 'Dashboard',

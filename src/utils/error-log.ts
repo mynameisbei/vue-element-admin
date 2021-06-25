@@ -1,6 +1,6 @@
 import { nextTick, App } from 'vue';
 import store from '@/store';
-import { isString } from 'lodash';
+import { isString } from 'lodash-es';
 import settings from '@/settings';
 
 export default function (app: App<Element>): void {

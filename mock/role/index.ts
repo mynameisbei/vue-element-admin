@@ -1,6 +1,6 @@
 import Mock from 'mockjs';
 import { MockMethod } from 'vite-plugin-mock';
-import { cloneDeep } from 'lodash';
+import { cloneDeep } from 'lodash-es';
 import { asyncRoutes, constantRoutes } from './routes.js';
 
 const routes = cloneDeep([...constantRoutes, ...asyncRoutes]);

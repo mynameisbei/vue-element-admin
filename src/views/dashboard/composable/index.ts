@@ -1,6 +1,13 @@
-import { debounce } from 'lodash';
-import { init } from 'echarts';
-import('echarts/theme/macarons'); // echarts theme
+import { debounce, noop } from 'lodash-es';
+import * as echarts from 'echarts/core';
+import { BarChart, LineChart, RadarChart, PieChart } from 'echarts/charts';
+import {
+  TitleComponent,
+  TooltipComponent,
+  GridComponent,
+  LegendComponent,
+} from 'echarts/components';
+import { CanvasRenderer } from 'echarts/renderers';
 
 import {
   ref,
@@ -14,7 +21,6 @@ import {
   unref,
   Ref,
 } from 'vue';
-import { noop } from 'lodash';
 
 export function useResize(chart: Ref<Record<string, any> | undefined>): void {
   const $_sidebarElm = ref<Element>();
@@ -113,7 +119,18 @@ export function useChart(
 
   const initChart = () => {
     if (el.value) {
-      chart.value = markRaw(init(el.value, 'macarons'));
+      echarts.use([
+        TitleComponent,
+        TooltipComponent,
+        GridComponent,
+        BarChart,
+        CanvasRenderer,
+        LegendComponent,
+        LineChart,
+        RadarChart,
+        PieChart,
+      ]);
+      chart.value = markRaw(echarts.init(el.value, 'macarons'));
       setOptions(options);
     }
   };
