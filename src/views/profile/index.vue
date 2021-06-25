@@ -32,7 +32,7 @@ import UserCard from './components/UserCard.vue';
 import Activity from './components/Activity.vue';
 import Timeline from './components/Timeline.vue';
 import Account from './components/Account.vue';
-import { computed, defineComponent, onBeforeMount, ref } from 'vue';
+import { computed, defineComponent, ref } from 'vue';
 
 export default defineComponent({
   name: 'Profile',
@@ -56,9 +56,7 @@ export default defineComponent({
       };
     };
 
-    onBeforeMount(() => {
-      getUser();
-    });
+    getUser();
 
     return {
       user,

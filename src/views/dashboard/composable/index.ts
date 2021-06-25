@@ -1,5 +1,5 @@
 import { debounce } from 'lodash';
-import echarts from 'echarts';
+import { init } from 'echarts';
 import('echarts/theme/macarons'); // echarts theme
 
 import {
@@ -112,8 +112,10 @@ export function useChart(
   });
 
   const initChart = () => {
-    chart.value = markRaw(echarts.init(el.value, 'macarons'));
-    setOptions(options);
+    if (el.value) {
+      chart.value = markRaw(init(el.value, 'macarons'));
+      setOptions(options);
+    }
   };
 
   const setOptions = (params: typeof options) => {
