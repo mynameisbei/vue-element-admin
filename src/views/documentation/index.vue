@@ -34,10 +34,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import DropdownMenu from '@/components/Share/DropdownMenu.vue';
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   name: 'Documentation',
   components: { DropdownMenu },
   setup() {
@@ -82,7 +83,7 @@ export default {
       ],
     };
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>

@@ -24,7 +24,7 @@ import Layout from '@/layout/index.vue';
   }
  */
 
-interface RouteConfig {
+export interface RouteConfig {
   hidden?: boolean;
   meta?: {
     [key: string]: any;

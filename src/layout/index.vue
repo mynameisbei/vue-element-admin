@@ -19,7 +19,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import RightPanel from '@/components/RightPanel/index.vue';
 import {
   AppMain,
@@ -28,14 +28,20 @@ import {
   Sidebar,
   TagsView,
 } from './components/index';
-import { computed, onBeforeUnmount, onMounted, watch } from 'vue';
+import {
+  computed,
+  defineComponent,
+  onBeforeUnmount,
+  onMounted,
+  watch,
+} from 'vue';
 import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
 
 const { body } = document;
 const WIDTH = 992; // refer to Bootstrap's responsive design
 
-export default {
+export default defineComponent({
   name: 'Layout',
   components: {
     AppMain,
@@ -116,7 +122,7 @@ export default {
       handleClickOutside,
     };
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>

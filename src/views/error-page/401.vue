@@ -37,12 +37,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import errGif from '@/assets/401_images/401.gif';
-import { ref } from 'vue';
+import { defineComponent, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
-export default {
+export default defineComponent({
   name: 'Page401',
   setup() {
     const route = useRoute();
@@ -65,7 +65,7 @@ export default {
       back,
     };
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>

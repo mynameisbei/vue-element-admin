@@ -2,11 +2,11 @@
   <div ref="el" :class="className" :style="{ height: height, width: width }" />
 </template>
 
-<script>
+<script lang="ts">
 import { useResize, useChart } from '@/views/dashboard/composable';
-import { ref } from 'vue';
+import { defineComponent, ref } from 'vue';
 
-export default {
+export default defineComponent({
   props: {
     className: {
       type: String,
@@ -22,7 +22,7 @@ export default {
     },
   },
   setup() {
-    const el = ref(null);
+    const el = ref<HTMLElement | undefined>();
     const options = {
       tooltip: {
         trigger: 'item',
@@ -61,5 +61,5 @@ export default {
       el,
     };
   },
-};
+});
 </script>

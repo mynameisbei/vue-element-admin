@@ -15,8 +15,10 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'Hamburger',
   props: {
     isActive: {
@@ -34,7 +36,7 @@ export default {
       toggleClick,
     };
   },
-};
+});
 </script>
 
 <style scoped>

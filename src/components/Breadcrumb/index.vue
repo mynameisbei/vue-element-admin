@@ -13,16 +13,17 @@
   </el-breadcrumb>
 </template>
 
-<script>
+<script lang="ts">
+import { RouteRaw } from '@/router';
 import * as pathToRegexp from 'path-to-regexp';
-import { ref, watch } from 'vue';
+import { defineComponent, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
-export default {
+export default defineComponent({
   setup() {
     const route = useRoute();
     const router = useRouter();
-    const levelList = ref([]);
+    const levelList = ref<RouteRaw[]>([]);
 
     watch(
       () => route,
@@ -39,26 +40,9 @@ export default {
       let matched = route.matched.filter(
         (item) => item.meta && item.meta.title,
       );
-      const first = matched[0];
-
-      if (!isDashboard(first)) {
-        matched = [{ path: '/dashboard', meta: { title: 'Dashboard' } }].concat(
-          matched,
-        );
-      }
-
       levelList.value = matched.filter(
         (item) =>
           item.meta && item.meta.title && item.meta.breadcrumb !== false,
-      );
-    };
-    const isDashboard = (route) => {
-      const name = route && route.name;
-      if (!name) {
-        return false;
-      }
-      return (
-        name.trim().toLocaleLowerCase() === 'Dashboard'.toLocaleLowerCase()
       );
     };
     const pathCompile = (path) => {
@@ -83,7 +67,7 @@ export default {
       handleLink,
     };
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>

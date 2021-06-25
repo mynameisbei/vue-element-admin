@@ -65,10 +65,11 @@
   </el-card>
 </template>
 
-<script>
+<script lang="ts">
 import PanThumb from '@/components/PanThumb/index.vue';
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   components: { PanThumb },
   props: {
     user: {
@@ -83,7 +84,7 @@ export default {
       },
     },
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>

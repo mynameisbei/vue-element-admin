@@ -2,13 +2,13 @@
   <div ref="el" :class="className" :style="{ height: height, width: width }" />
 </template>
 
-<script>
+<script lang="ts">
 import { useChart, useResize } from '@/views/dashboard/composable';
-import { ref } from 'vue';
+import { defineComponent, ref } from 'vue';
 
 const animationDuration = 3000;
 
-export default {
+export default defineComponent({
   props: {
     className: {
       type: String,
@@ -24,7 +24,7 @@ export default {
     },
   },
   setup() {
-    const el = ref(null);
+    const el = ref<HTMLElement | undefined>();
     const options = {
       tooltip: {
         trigger: 'axis',
@@ -100,5 +100,5 @@ export default {
       el,
     };
   },
-};
+});
 </script>

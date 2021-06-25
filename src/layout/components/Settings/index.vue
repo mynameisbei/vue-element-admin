@@ -29,12 +29,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import ThemePicker from '@/components/ThemePicker/index.vue';
-import { computed } from 'vue';
+import { computed, defineComponent } from 'vue';
 import { useStore } from 'vuex';
 
-export default {
+export default defineComponent({
   components: { ThemePicker },
   setup() {
     const store = useStore();
@@ -82,7 +82,7 @@ export default {
       themeChange,
     };
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>

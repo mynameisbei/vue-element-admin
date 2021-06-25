@@ -21,11 +21,11 @@
   </el-table>
 </template>
 
-<script>
+<script lang="ts">
 import { transactionList } from '@/api/remote-search';
-import { ref } from 'vue';
+import { defineComponent, ref } from 'vue';
 
-export default {
+export default defineComponent({
   setup() {
     const list = ref([]);
 
@@ -54,5 +54,5 @@ export default {
       orderNoFilter,
     };
   },
-};
+});
 </script>

@@ -26,15 +26,15 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { useStore } from 'vuex';
 import UserCard from './components/UserCard.vue';
 import Activity from './components/Activity.vue';
 import Timeline from './components/Timeline.vue';
 import Account from './components/Account.vue';
-import { computed, onBeforeMount, ref } from 'vue';
+import { computed, defineComponent, onBeforeMount, ref } from 'vue';
 
-export default {
+export default defineComponent({
   name: 'Profile',
   components: { UserCard, Activity, Timeline, Account },
   setup() {
@@ -68,5 +68,5 @@ export default {
       roles,
     };
   },
-};
+});
 </script>

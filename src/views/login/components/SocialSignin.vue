@@ -15,10 +15,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 // import openWindow from '@/utils/open-window'
 
-export default {
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'SocialSignin',
   setup() {
     const wechatHandleClick = () => {
@@ -44,7 +46,7 @@ export default {
       tencentHandleClick,
     };
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>

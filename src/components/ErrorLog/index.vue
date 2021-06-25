@@ -62,11 +62,11 @@
   </div>
 </template>
 
-<script>
-import { computed, ref } from 'vue';
+<script lang="ts">
+import { computed, defineComponent, ref } from 'vue';
 import { useStore } from 'vuex';
 
-export default {
+export default defineComponent({
   name: 'ErrorLog',
   setup() {
     const store = useStore();
@@ -85,7 +85,7 @@ export default {
       clearAll,
     };
   },
-};
+});
 </script>
 
 <style scoped>

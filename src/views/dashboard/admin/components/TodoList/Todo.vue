@@ -22,9 +22,10 @@
   </li>
 </template>
 
-<script>
-import { nextTick, ref } from 'vue';
-export default {
+<script lang="ts">
+import { defineComponent, nextTick, PropType, ref } from 'vue';
+import { TodoType } from './index.vue';
+export default defineComponent({
   name: 'Todo',
   directives: {
     focus(el, { value }) {
@@ -37,22 +38,20 @@ export default {
   },
   props: {
     todo: {
-      type: Object,
-      default: function () {
-        return {};
-      },
+      type: Object as PropType<TodoType>,
+      default: () => ({}),
     },
   },
   emits: ['deleteTodo', 'editTodo', 'toggleTodo'],
   setup(props, context) {
     const editing = ref(false);
-    const deleteTodo = (todo) => {
+    const deleteTodo = (todo: TodoType) => {
       context.emit('deleteTodo', todo);
     };
-    const editTodo = ({ todo, value }) => {
+    const editTodo = ({ todo, value }: { todo: TodoType; value: string }) => {
       context.emit('editTodo', { todo, value });
     };
-    const toggleTodo = (todo) => {
+    const toggleTodo = (todo: TodoType) => {
       context.emit('toggleTodo', todo);
     };
     const doneEdit = (e) => {
@@ -84,5 +83,5 @@ export default {
       cancelEdit,
     };
   },
-};
+});
 </script>

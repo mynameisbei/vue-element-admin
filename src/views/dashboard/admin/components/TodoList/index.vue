@@ -57,21 +57,26 @@
   </section>
 </template>
 
-<script>
-import { reactive, ref, computed } from 'vue';
+<script lang="ts">
+import { reactive, ref, computed, defineComponent } from 'vue';
 import Todo from './Todo.vue';
 
-export default {
+export interface TodoType {
+  text: string;
+  done: boolean;
+}
+
+export default defineComponent({
   components: { Todo },
   setup() {
     const STORAGE_KEY = 'todos';
     const visibility = ref('all');
     const filters = reactive({
-      all: (todos) => todos,
-      active: (todos) => todos.filter((todo) => !todo.done),
-      completed: (todos) => todos.filter((todo) => todo.done),
+      all: (todos: TodoType[]) => todos,
+      active: (todos: TodoType[]) => todos.filter((todo) => !todo.done),
+      completed: (todos: TodoType[]) => todos.filter((todo) => todo.done),
     });
-    const todos = ref([
+    const todos = ref<TodoType[]>([
       { text: 'star repository', done: false },
       { text: 'fork repository', done: false },
       { text: 'follow author', done: false },
@@ -148,7 +153,7 @@ export default {
       toggleAll,
     };
   },
-};
+});
 </script>
 
 <style lang="scss">

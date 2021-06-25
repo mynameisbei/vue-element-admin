@@ -16,13 +16,13 @@
   />
 </template>
 
-<script>
-import { computed, ref, watch } from 'vue';
+<script lang="ts">
+import { computed, defineComponent, ref, watch } from 'vue';
 import { useStore } from 'vuex';
 import { message } from '@/utils';
 const ORIGINAL_THEME = '#409EFF'; // default color
 
-export default {
+export default defineComponent({
   emits: ['change'],
   setup(props, context) {
     const store = useStore();
@@ -82,14 +82,14 @@ export default {
 
       chalkHandler();
 
-      const styles = [].slice
-        .call(document.querySelectorAll('style'))
-        .filter((style) => {
+      const styles = Array.from(document.querySelectorAll('style')).filter(
+        (style) => {
           const text = style.innerText;
           return (
             new RegExp(oldVal, 'i').test(text) && !/Chalk Variables/.test(text)
           );
-        });
+        },
+      );
       styles.forEach((style) => {
         const { innerText } = style;
         if (typeof innerText !== 'string') return;
@@ -110,7 +110,7 @@ export default {
     };
 
     const getCSSString = (url) => {
-      return new Promise((resolve) => {
+      return new Promise<void>((resolve) => {
         const xhr = new XMLHttpRequest();
         xhr.onreadystatechange = () => {
           if (xhr.readyState === 4 && xhr.status === 200) {
@@ -125,9 +125,9 @@ export default {
 
     const getThemeCluster = (theme) => {
       const tintColor = (color, tint) => {
-        let red = parseInt(color.slice(0, 2), 16);
-        let green = parseInt(color.slice(2, 4), 16);
-        let blue = parseInt(color.slice(4, 6), 16);
+        let red: number | string = parseInt(color.slice(0, 2), 16);
+        let green: number | string = parseInt(color.slice(2, 4), 16);
+        let blue: number | string = parseInt(color.slice(4, 6), 16);
 
         if (tint === 0) {
           // when primary color is in its rgb space
@@ -146,9 +146,9 @@ export default {
       };
 
       const shadeColor = (color, shade) => {
-        let red = parseInt(color.slice(0, 2), 16);
-        let green = parseInt(color.slice(2, 4), 16);
-        let blue = parseInt(color.slice(4, 6), 16);
+        let red: number | string = parseInt(color.slice(0, 2), 16);
+        let green: number | string = parseInt(color.slice(2, 4), 16);
+        let blue: number | string = parseInt(color.slice(4, 6), 16);
 
         red = Math.round((1 - shade) * red);
         green = Math.round((1 - shade) * green);
@@ -175,7 +175,7 @@ export default {
       defaultTheme,
     };
   },
-};
+});
 </script>
 
 <style>

@@ -18,10 +18,10 @@
   </div>
 </template>
 
-<script>
-import { ref } from 'vue';
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
 
-export default {
+export default defineComponent({
   props: {
     items: {
       type: Array,
@@ -46,7 +46,7 @@ export default {
       clickTitle,
     };
   },
-};
+});
 </script>
 
 <style lang="scss">

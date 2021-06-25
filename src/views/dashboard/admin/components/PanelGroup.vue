@@ -62,10 +62,12 @@
   </el-row>
 </template>
 
-<script>
+<script lang="ts">
 // import CountTo from 'vue-count-to'
 
-export default {
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   components: {
     // CountTo
   },
@@ -79,7 +81,7 @@ export default {
       handleSetLineChartData,
     };
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>

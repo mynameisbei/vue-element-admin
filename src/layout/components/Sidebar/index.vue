@@ -13,7 +13,7 @@
         mode="vertical"
       >
         <sidebar-item
-          v-for="route in permission_routes"
+          v-for="route in permissionRoutes"
           :key="route.path"
           :item="route"
           :base-path="route.path"
@@ -23,35 +23,48 @@
   </div>
 </template>
 
-<script>
-import { mapGetters } from 'vuex';
+<script lang="ts">
+import { useStore } from 'vuex';
 import Logo from './Logo.vue';
 import SidebarItem from './SidebarItem.vue';
 import variables from '@/styles/variables.module.scss';
+import { computed, defineComponent } from 'vue';
+import { useRoute } from 'vue-router';
 
-export default {
+export default defineComponent({
   name: 'SideBar',
   components: { SidebarItem, Logo },
-  computed: {
-    ...mapGetters(['permission_routes', 'sidebar']),
-    activeMenu() {
-      const route = this.$route;
+  setup() {
+    const store = useStore();
+    const route = useRoute();
+
+    const permissionRoutes = computed(() => store.getters.permission_routes);
+    const sidebar = computed(() => store.getters.sidebar);
+    const activeMenu = computed(() => {
       const { meta, path } = route;
       // if set path, the sidebar will highlight the path you set
       if (meta.activeMenu) {
         return meta.activeMenu;
       }
       return path;
-    },
-    showLogo() {
-      return this.$store.state.settings.sidebarLogo;
-    },
-    variables() {
+    });
+    const showLogo = computed(() => {
+      return store.state.settings.sidebarLogo;
+    });
+    const style = computed(() => {
       return variables;
-    },
-    isCollapse() {
-      return !this.sidebar.opened;
-    },
+    });
+    const isCollapse = computed(() => {
+      return !sidebar.value.opened;
+    });
+
+    return {
+      permissionRoutes,
+      activeMenu,
+      showLogo,
+      variables: style,
+      isCollapse,
+    };
   },
-};
+});
 </script>

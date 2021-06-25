@@ -2,11 +2,11 @@
   <div ref="el" :class="className" :style="{ height: height, width: width }" />
 </template>
 
-<script>
-import { computed, ref, toRefs } from 'vue';
+<script lang="ts">
+import { computed, defineComponent, ref, toRefs } from 'vue';
 import { useChart, useResize } from '@/views/dashboard/composable';
 
-export default {
+export default defineComponent({
   props: {
     className: {
       type: String,
@@ -30,7 +30,7 @@ export default {
     },
   },
   setup(props) {
-    const el = ref(null);
+    const el = ref<HTMLElement | undefined>();
     const { chartData } = toRefs(props);
     const options = computed(() => ({
       xAxis: {
@@ -111,5 +111,5 @@ export default {
       el,
     };
   },
-};
+});
 </script>

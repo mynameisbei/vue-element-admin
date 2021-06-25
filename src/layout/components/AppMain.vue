@@ -10,12 +10,12 @@
   </section>
 </template>
 
-<script>
-import { computed } from 'vue';
+<script lang="ts">
+import { computed, defineComponent } from 'vue';
 import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
 
-export default {
+export default defineComponent({
   name: 'AppMain',
   setup() {
     const store = useStore();
@@ -28,7 +28,7 @@ export default {
       key,
     };
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>

@@ -45,21 +45,22 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import path from 'path-browserify';
 import { isExternal } from '@/utils/validate';
 import Item from './Item.vue';
 import AppLink from './Link.vue';
 import { useStore } from 'vuex';
-import { computed, onMounted, ref } from 'vue';
+import { computed, defineComponent, onMounted, PropType, ref } from 'vue';
+import { RouteRaw } from '@/router';
 
-export default {
+export default defineComponent({
   name: 'SidebarItem',
   components: { Item, AppLink },
   props: {
     // route object
     item: {
-      type: Object,
+      type: Object as PropType<RouteRaw>,
       required: true,
     },
     isNest: {
@@ -73,7 +74,7 @@ export default {
   },
   setup(props) {
     const store = useStore();
-    const subMenu = ref(null);
+    const subMenu = ref<any>();
     let onlyOneChild = ref({});
 
     const device = computed(() => store.state.app.device);
@@ -96,7 +97,7 @@ export default {
       fixBugIniOS();
     });
 
-    const hasOneShowingChild = (children = [], parent) => {
+    const hasOneShowingChild = (children: RouteRaw[] = [], parent) => {
       const showingChildren = children.filter((item) => {
         if (item.hidden) {
           return false;
@@ -137,5 +138,5 @@ export default {
       onlyOneChild,
     };
   },
-};
+});
 </script>

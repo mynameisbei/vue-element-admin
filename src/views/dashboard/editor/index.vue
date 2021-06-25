@@ -23,13 +23,13 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { useStore } from 'vuex';
 import PanThumb from '@/components/PanThumb/index.vue';
 import GithubCorner from '@/components/GithubCorner/index.vue';
-import { computed } from 'vue';
+import { computed, defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   name: 'DashboardEditor',
   components: { PanThumb, GithubCorner },
   setup() {
@@ -47,7 +47,7 @@ export default {
       roles,
     };
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>

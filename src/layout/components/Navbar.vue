@@ -60,7 +60,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Breadcrumb from '@/components/Breadcrumb/index.vue';
 import Hamburger from '@/components/Hamburger/index.vue';
 import ErrorLog from '@/components/ErrorLog/index.vue';
@@ -68,10 +68,10 @@ import Screenfull from '@/components/Screenfull/index.vue';
 // import SizeSelect from '@/components/SizeSelect';
 import Search from '@/components/HeaderSearch/index.vue';
 import { useStore } from 'vuex';
-import { computed } from 'vue';
+import { computed, defineComponent } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
-export default {
+export default defineComponent({
   components: {
     Breadcrumb,
     Hamburger,
@@ -105,7 +105,7 @@ export default {
       logout,
     };
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>

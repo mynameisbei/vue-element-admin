@@ -43,14 +43,29 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import ScrollPane from './ScrollPane.vue';
 import path from 'path-browserify';
-import { computed, onMounted, ref, watch, nextTick } from 'vue';
+import {
+  computed,
+  onMounted,
+  ref,
+  watch,
+  nextTick,
+  defineComponent,
+} from 'vue';
 import { useStore } from 'vuex';
 import { useRoute, useRouter } from 'vue-router';
+import { RouteRaw } from '@/router';
 
-export default {
+interface Tag {
+  fullPath: string;
+  path: string;
+  name: string;
+  [key: string]: any;
+}
+
+export default defineComponent({
   components: { ScrollPane },
   setup() {
     const store = useStore();
@@ -59,11 +74,11 @@ export default {
     const visible = ref(false);
     const top = ref(0);
     const left = ref(0);
-    const selectedTag = ref({});
-    const affixTags = ref([]);
-    const root = ref(null);
-    const scrollPane = ref(null);
-    const tag = ref([]);
+    const selectedTag = ref<RouteRaw>();
+    const affixTags = ref<Tag[]>([]);
+    const root = ref<HTMLElement>();
+    const scrollPane = ref<any>();
+    const tag = ref<Tag[]>([]);
 
     const visitedViews = computed(() => store.state.tagsView.visitedViews);
     const routes = computed(() => store.state.permission.routes);
@@ -90,10 +105,10 @@ export default {
       return path === route.path;
     };
     const isAffix = (tag) => {
-      return tag.meta && tag.meta.affix;
+      return tag?.meta?.affix;
     };
     const filterAffixTags = (currentRoutes, basePath = '/') => {
-      let tags = [];
+      let tags: Tag[] = [];
       currentRoutes.forEach((route) => {
         if (route.meta && route.meta.affix) {
           const tagPath = path.resolve(basePath, route.path);
@@ -163,10 +178,14 @@ export default {
       });
     };
     const closeOthersTags = () => {
-      router.push(selectedTag);
-      store.dispatch('tagsView/delOthersViews', selectedTag).then(() => {
-        moveToCurrentTag();
-      });
+      if (selectedTag.value) {
+        router.push(selectedTag.value);
+        store
+          .dispatch('tagsView/delOthersViews', selectedTag.value)
+          .then(() => {
+            moveToCurrentTag();
+          });
+      }
     };
     const closeAllTags = (view) => {
       store.dispatch('tagsView/delAllViews').then(({ visitedViews }) => {
@@ -192,21 +211,23 @@ export default {
       }
     };
     const openMenu = (tag, e) => {
-      const menuMinWidth = 105;
-      const offsetLeft = root.value.getBoundingClientRect().left; // container margin left
-      const offsetWidth = root.value.offsetWidth; // container width
-      const maxLeft = offsetWidth - menuMinWidth; // left boundary
-      const currentLeft = e.clientX - offsetLeft + 15; // 15: margin right
+      if (root.value) {
+        const menuMinWidth = 105;
+        const offsetLeft = root.value.getBoundingClientRect().left; // container margin left
+        const offsetWidth = root.value.offsetWidth; // container width
+        const maxLeft = offsetWidth - menuMinWidth; // left boundary
+        const currentLeft = e.clientX - offsetLeft + 15; // 15: margin right
 
-      if (currentLeft > maxLeft) {
-        left.value = maxLeft;
-      } else {
-        left.value = currentLeft;
+        if (currentLeft > maxLeft) {
+          left.value = maxLeft;
+        } else {
+          left.value = currentLeft;
+        }
+
+        top.value = e.clientY;
+        visible.value = true;
+        selectedTag.value = tag;
       }
-
-      top.value = e.clientY;
-      visible.value = true;
-      selectedTag.value = tag;
     };
     const closeMenu = () => {
       visible.value = false;
@@ -236,7 +257,7 @@ export default {
       tag,
     };
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>

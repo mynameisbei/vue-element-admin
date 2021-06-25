@@ -16,7 +16,7 @@ import {
 } from 'vue';
 import { noop } from 'lodash';
 
-export function useResize(chart: Ref<Record<string, any>>): void {
+export function useResize(chart: Ref<Record<string, any> | undefined>): void {
   const $_sidebarElm = ref<Element>();
   const $_resizeHandler = ref<() => any>(noop);
 
@@ -81,12 +81,12 @@ export function useResize(chart: Ref<Record<string, any>>): void {
 }
 
 export interface UserChartResult {
-  chart: Record<string, any>;
+  chart: Ref<Record<string, any> | undefined>;
 }
 
 export function useChart(
   options: Record<string, any>,
-  el: Ref<HTMLElement>,
+  el: Ref<HTMLElement | undefined>,
 ): UserChartResult {
   const chart = markRaw(ref<Record<string, any>>());
 

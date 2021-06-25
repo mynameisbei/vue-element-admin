@@ -97,14 +97,14 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { validUsername } from '@/utils/validate';
 import SocialSign from './components/SocialSignin.vue';
-import { onMounted, ref, watch, nextTick } from 'vue';
+import { onMounted, ref, watch, nextTick, defineComponent } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 
-export default {
+export default defineComponent({
   name: 'Login',
   components: { SocialSign },
   setup() {
@@ -126,9 +126,9 @@ export default {
       }
     };
 
-    const username = ref(null);
-    const password = ref(null);
-    const loginFormRef = ref(null);
+    const username = ref<any>();
+    const password = ref<any>();
+    const loginFormRef = ref<any>();
 
     const loginForm = ref({
       username: 'admin',
@@ -146,7 +146,7 @@ export default {
     const capsTooltip = ref(false);
     const loading = ref(false);
     const showDialog = ref(false);
-    const redirect = ref(undefined);
+    const redirect = ref<typeof route.query.redirect>();
     const otherQuery = ref({});
 
     const getOtherQuery = (query) => {
@@ -204,7 +204,10 @@ export default {
             .dispatch('user/login', loginForm.value)
             .then(() => {
               router.push({
-                path: redirect.value || '/',
+                path:
+                  typeof redirect.value === 'string'
+                    ? redirect.value || '/'
+                    : '/',
                 query: otherQuery.value,
               });
               loading.value = false;
@@ -237,7 +240,7 @@ export default {
       getOtherQuery,
     };
   },
-};
+});
 </script>
 
 <style lang="scss">

@@ -101,11 +101,13 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
+
 const avatarPrefix = '?imageView2/1/w/80/h/80';
 const carouselPrefix = '?imageView2/2/h/440';
 
-export default {
+export default defineComponent({
   data() {
     return {
       carouselImages: [
@@ -118,7 +120,7 @@ export default {
       carouselPrefix,
     };
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>

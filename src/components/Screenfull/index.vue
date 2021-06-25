@@ -7,12 +7,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import screenfull from 'screenfull';
-import { onBeforeUnmount, onMounted, ref } from 'vue';
+import { defineComponent, onBeforeUnmount, onMounted, ref } from 'vue';
 import { message } from '@/utils';
 
-export default {
+export default defineComponent({
   name: 'Screenfull',
   setup() {
     const isFullscreen = ref(false);
@@ -25,7 +25,7 @@ export default {
     });
 
     const click = () => {
-      if (!screenfull.enabled) {
+      if (!screenfull.isEnabled) {
         message({
           message: 'you browser can not work',
           type: 'warning',
@@ -35,15 +35,17 @@ export default {
       screenfull.toggle();
     };
     const change = () => {
-      isFullscreen.value = screenfull.isFullscreen;
+      if (screenfull.isEnabled) {
+        isFullscreen.value = screenfull.isFullscreen;
+      }
     };
     const init = () => {
-      if (screenfull.enabled) {
+      if (screenfull.isEnabled) {
         screenfull.on('change', change);
       }
     };
     const destroy = () => {
-      if (screenfull.enabled) {
+      if (screenfull.isEnabled) {
         screenfull.off('change', change);
       }
     };
@@ -53,7 +55,7 @@ export default {
       click,
     };
   },
-};
+});
 </script>
 
 <style scoped>

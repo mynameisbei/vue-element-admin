@@ -2,11 +2,11 @@
   <div></div>
 </template>
 
-<script>
-import { onActivated } from 'vue';
+<script lang="ts">
+import { defineComponent, onActivated } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
-export default {
+export default defineComponent({
   setup() {
     const route = useRoute();
     const router = useRouter();
@@ -16,5 +16,5 @@ export default {
       router.replace({ path: '/' + path, query });
     });
   },
-};
+});
 </script>

@@ -18,12 +18,12 @@
   </teleport>
 </template>
 
-<script>
+<script lang="ts">
 import { addClass, removeClass } from '@/utils';
-import { computed, ref, watch } from 'vue';
+import { computed, defineComponent, ref, watch } from 'vue';
 import { useStore } from 'vuex';
 
-export default {
+export default defineComponent({
   name: 'RightPanel',
   props: {
     clickNotClose: {
@@ -68,7 +68,7 @@ export default {
       theme,
     };
   },
-};
+});
 </script>
 
 <style>

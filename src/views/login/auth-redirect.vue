@@ -1,5 +1,7 @@
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'AuthRedirect',
   created() {
     const hash = window.location.search.slice(1);
@@ -11,5 +13,5 @@ export default {
   render: function (h) {
     return h(); // avoid warning message
   },
-};
+});
 </script>

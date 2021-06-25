@@ -30,13 +30,13 @@
   </el-card>
 </template>
 
-<script>
+<script lang="ts">
 import { useStore } from 'vuex';
 import PanThumb from '@/components/PanThumb/index.vue';
 import Mallki from '@/components/TextHoverEffect/Mallki.vue';
-import { computed } from 'vue';
+import { computed, defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   components: { PanThumb, Mallki },
   setup() {
     const store = useStore();
@@ -50,7 +50,7 @@ export default {
       roles,
     };
   },
-};
+});
 </script>
 
 <style lang="scss">

@@ -26,16 +26,23 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 // fuse is a lightweight fuzzy-search module
 // make search results more in line with expectations
 import Fuse from 'fuse.js';
 import path from 'path-browserify';
-import { computed, nextTick, onMounted, ref, watch } from 'vue';
+import {
+  computed,
+  defineComponent,
+  nextTick,
+  onMounted,
+  ref,
+  watch,
+} from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 
-export default {
+export default defineComponent({
   name: 'HeaderSearch',
   setup() {
     const store = useStore();
@@ -45,8 +52,8 @@ export default {
     const options = ref([]);
     const searchPool = ref([]);
     const show = ref(false);
-    let fuse = null;
-    const headerSearchSelect = ref(null);
+    let fuse: any = null;
+    const headerSearchSelect = ref<any>();
 
     const routes = computed(() => store.getters.permission_routes);
 
@@ -91,7 +98,6 @@ export default {
         threshold: 0.4,
         location: 0,
         distance: 100,
-        maxPatternLength: 32,
         minMatchCharLength: 1,
         keys: [
           {
@@ -108,7 +114,7 @@ export default {
     // Filter out the routes that can be displayed in the sidebar
     // And generate the internationalized title
     const generateRoutes = (routes, basePath = '/', prefixTitle = []) => {
-      let res = [];
+      let res = [] as any;
 
       for (const router of routes) {
         // skip hidden router
@@ -118,7 +124,7 @@ export default {
 
         const data = {
           path: path.resolve(basePath, router.path),
-          title: [...prefixTitle],
+          title: [...prefixTitle] as any,
         };
 
         if (router.meta && router.meta.title) {
@@ -165,7 +171,7 @@ export default {
       querySearch,
     };
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>

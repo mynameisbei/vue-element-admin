@@ -61,7 +61,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import GithubCorner from '@/components/GithubCorner/index.vue';
 import PanelGroup from './components/PanelGroup.vue';
 import LineChart from './components/LineChart.vue';
@@ -71,9 +71,9 @@ import BarChart from './components/BarChart.vue';
 import TransactionTable from './components/TransactionTable.vue';
 import TodoList from './components/TodoList/index.vue';
 import BoxCard from './components/BoxCard.vue';
-import { ref } from 'vue';
+import { defineComponent, ref } from 'vue';
 
-export default {
+export default defineComponent({
   name: 'DashboardAdmin',
   components: {
     GithubCorner,
@@ -117,7 +117,7 @@ export default {
       handleSetLineChartData,
     };
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>

@@ -4,11 +4,11 @@
   </component>
 </template>
 
-<script>
+<script lang="ts">
 import { isExternal as judgeIsExternal } from '@/utils/validate';
-import { computed } from 'vue';
+import { computed, defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   props: {
     to: {
       type: String,
@@ -44,5 +44,5 @@ export default {
       linkProps,
     };
   },
-};
+});
 </script>

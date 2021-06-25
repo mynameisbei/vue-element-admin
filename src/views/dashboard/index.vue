@@ -4,13 +4,13 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { useStore } from 'vuex';
 import adminDashboard from './admin/index.vue';
 import editorDashboard from './editor/index.vue';
-import { computed, ref } from 'vue';
+import { computed, defineComponent, ref } from 'vue';
 
-export default {
+export default defineComponent({
   name: 'Dashboard',
   components: { adminDashboard, editorDashboard },
   setup() {
@@ -28,5 +28,5 @@ export default {
       roles,
     };
   },
-};
+});
 </script>

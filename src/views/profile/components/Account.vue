@@ -12,10 +12,11 @@
   </el-form>
 </template>
 
-<script>
+<script lang="ts">
 import { message } from '@/utils';
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   props: {
     user: {
       type: Object,
@@ -29,7 +30,8 @@ export default {
   },
   setup() {
     const submit = () => {
-      message.success({
+      message({
+        type: 'success',
         message: 'User information has been updated successfully',
         duration: 5 * 1000,
       });
@@ -39,5 +41,5 @@ export default {
       submit,
     };
   },
-};
+});
 </script>
