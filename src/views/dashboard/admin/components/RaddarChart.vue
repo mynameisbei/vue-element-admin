@@ -66,13 +66,11 @@ export default defineComponent({
           type: 'radar',
           symbolSize: 0,
           areaStyle: {
-            normal: {
-              shadowBlur: 13,
-              shadowColor: 'rgba(0,0,0,.2)',
-              shadowOffsetX: 0,
-              shadowOffsetY: 10,
-              opacity: 1,
-            },
+            shadowBlur: 13,
+            shadowColor: 'rgba(0,0,0,.2)',
+            shadowOffsetX: 0,
+            shadowOffsetY: 10,
+            opacity: 1,
           },
           data: [
             {

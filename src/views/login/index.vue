@@ -79,7 +79,7 @@
         <el-button
           class="thirdparty-button"
           type="primary"
-          @click="showDialog = true"
+          @click="handleThirdClick"
         >
           Or connect with
         </el-button>
@@ -222,6 +222,10 @@ export default defineComponent({
       });
     };
 
+    const handleThirdClick = () => {
+      showDialog.value = true;
+    };
+
     return {
       loginFormRef,
       username,
@@ -238,6 +242,7 @@ export default defineComponent({
       showPwd,
       handleLogin,
       getOtherQuery,
+      handleThirdClick,
     };
   },
 });
