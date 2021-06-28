@@ -1,11 +1,11 @@
 import axios from 'axios';
-import { message, messageBox } from '.';
+import { getEnv, message, messageBox, PROJECT_ENV } from '.';
 import store from '@/store';
 import { getToken } from '@/utils/auth';
 
 // create an axios instance
 const service = axios.create({
-  baseURL: (import.meta as any).env.VITE_BASE_API as string, // url = base url + request url
+  baseURL: getEnv(PROJECT_ENV.baseApi),
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 5000, // request timeout
 });

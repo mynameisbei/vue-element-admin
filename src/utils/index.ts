@@ -307,3 +307,13 @@ export function removeClass(ele: HTMLElement, cls: string): void {
 export const message = ElMessage;
 
 export const messageBox = ElMessageBox;
+
+export enum PROJECT_ENV {
+  env = 'ENV',
+  baseApi = 'VITE_BASE_API',
+  nodeEnv = 'NODE_ENV',
+}
+
+export function getEnv(name: PROJECT_ENV): string {
+  return (import.meta as any)[name] ?? '';
+}

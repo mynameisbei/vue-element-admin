@@ -2,6 +2,7 @@ import { nextTick, App } from 'vue';
 import store from '@/store';
 import { isString } from 'lodash-es';
 import settings from '@/settings';
+import { getEnv, PROJECT_ENV } from '.';
 
 export default function (app: App<Element>): void {
   // you can set in settings.js
@@ -9,7 +10,7 @@ export default function (app: App<Element>): void {
   const { errorLog: needErrorLog } = settings;
 
   function checkNeed() {
-    const env = ((import.meta as any).env.NODE_ENV as string) ?? '';
+    const env = getEnv(PROJECT_ENV.nodeEnv);
     if (isString(needErrorLog)) {
       return env === needErrorLog;
     }
