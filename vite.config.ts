@@ -34,6 +34,11 @@ export default defineConfig(({ command }) => {
         // default
         mockPath: 'mock',
         localEnabled: command === 'serve',
+        prodEnabled: command !== 'serve',
+        injectCode: `
+          import { setupProdMockServer } from './mockProdServer';
+          setupProdMockServer();
+        `,
       }),
       viteSvgIcons({
         // Specify the icon folder to be cached

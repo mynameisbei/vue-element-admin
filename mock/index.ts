@@ -3,11 +3,15 @@ import role from './role';
 import article from './article';
 import search from './remote-search';
 
-const mocks = [...user, ...role, ...article, ...search].map((route) => {
-  return {
-    ...route,
-    url: `/dev-api${route.url}`,
-  };
-});
+export function getMocks(baseApi = '/dev-api'): any[] {
+  const mocks = [...user, ...role, ...article, ...search].map((route) => {
+    return {
+      ...route,
+      url: `${baseApi}${route.url}`,
+    };
+  });
 
-export default mocks;
+  return mocks;
+}
+
+export default getMocks();
