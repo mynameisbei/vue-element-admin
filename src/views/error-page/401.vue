@@ -31,7 +31,7 @@
         />
       </el-col>
     </el-row>
-    <el-dialog v-model:visible="dialogVisible" title="随便看">
+    <el-dialog v-model="dialogVisible" title="随便看" append-to-body>
       <img :src="ewizardClap" class="pan-img" />
     </el-dialog>
   </div>
