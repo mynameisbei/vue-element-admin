@@ -1,5 +1,4 @@
-import Mock from 'mockjs';
-import { MockMethod } from 'vite-plugin-mock';
+const Mock = require('mockjs');
 
 const NameList = [];
 const count = 100;
@@ -13,11 +12,11 @@ for (let i = 0; i < count; i++) {
 }
 NameList.push({ name: 'mock-Pan' });
 
-export default [
+module.exports = [
   // username search
   {
     url: '/vue-element-admin/search/user',
-    method: 'get',
+    type: 'get',
     response: (config) => {
       const { name } = config.query;
       const mockNameList = NameList.filter((item) => {
@@ -34,7 +33,7 @@ export default [
   // transaction list
   {
     url: '/vue-element-admin/transaction/list',
-    method: 'get',
+    type: 'get',
     response: () => {
       return {
         code: 20000,
@@ -53,4 +52,4 @@ export default [
       };
     },
   },
-] as MockMethod[];
+];

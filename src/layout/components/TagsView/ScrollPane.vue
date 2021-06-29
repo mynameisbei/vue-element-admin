@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import { noop } from 'lodash-es';
+import { noop } from 'lodash';
 import {
   computed,
   defineComponent,

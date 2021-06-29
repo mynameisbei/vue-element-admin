@@ -86,9 +86,9 @@ const user: Module<UserState, any> = {
     },
 
     // user logout
-    logout({ commit, state, dispatch }) {
+    logout({ commit, dispatch }) {
       return new Promise<void>((resolve, reject) => {
-        logout(state.token)
+        logout()
           .then(() => {
             commit('SET_TOKEN', '');
             commit('SET_ROLES', []);

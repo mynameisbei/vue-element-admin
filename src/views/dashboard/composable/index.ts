@@ -1,4 +1,4 @@
-import { debounce, noop } from 'lodash-es';
+import { debounce, noop } from 'lodash';
 import * as echarts from 'echarts/core';
 import { BarChart, LineChart, RadarChart, PieChart } from 'echarts/charts';
 import {

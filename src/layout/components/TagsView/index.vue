@@ -45,7 +45,7 @@
 
 <script lang="ts">
 import ScrollPane from './ScrollPane.vue';
-import path from 'path-browserify';
+import path from 'path';
 import {
   computed,
   onMounted,

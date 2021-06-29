@@ -10,9 +10,14 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": false,
-    "isolatedModules": true,
-    "sourceMap": false,
+    "forceConsistentCasingInFileNames": true,
+    "useDefineForClassFields": true,
+    "sourceMap": true,
     "baseUrl": ".",
+    "types": [
+      "webpack-env",
+      "jest"
+    ],
     "paths": {
       "@/*": [
         "src/*"

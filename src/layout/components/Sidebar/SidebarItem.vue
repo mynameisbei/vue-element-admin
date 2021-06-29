@@ -46,7 +46,7 @@
 </template>
 
 <script lang="ts">
-import path from 'path-browserify';
+import path from 'path';
 import { isExternal } from '@/utils/validate';
 import Item from './Item.vue';
 import AppLink from './Link.vue';

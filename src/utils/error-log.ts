@@ -1,6 +1,6 @@
 import { nextTick, App } from 'vue';
 import store from '@/store';
-import { isString } from 'lodash-es';
+import { isString } from 'lodash';
 import settings from '@/settings';
 import { getEnv, PROJECT_ENV } from '.';
 

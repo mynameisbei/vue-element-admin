@@ -74,7 +74,7 @@ export default defineComponent({
       };
 
       if (!chalk.value) {
-        const url = `https://unpkg.com/element-plus@${ELEMENT_VERSION}/lib/theme-chalk/index.css`;
+        const url = `https://unpkg.com/element-plus@${process.env.VUE_APP_ELEMENT_VERSION}/lib/theme-chalk/index.css`;
         await getCSSString(url);
       }
 
