@@ -6,7 +6,6 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "prepare": "husky install",
-    "test": "jest --clearCache && cross-env IS_JEST=Y vue-cli-service test:unit",
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
@@ -31,14 +30,12 @@
     "@babel/core": "^7.14.6",
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
-    "@types/jest": "^26.0.20",
     "@typescript-eslint/eslint-plugin": "^4.28.0",
     "@typescript-eslint/parser": "^4.28.0",
     "@vue/cli-plugin-babel": "~5.0.0-beta.2",
     "@vue/cli-plugin-eslint": "~5.0.0-beta.2",
     "@vue/cli-plugin-router": "~5.0.0-beta.2",
     "@vue/cli-plugin-typescript": "~5.0.0-beta.2",
-    "@vue/cli-plugin-unit-jest": "~5.0.0-beta.2",
     "@vue/cli-plugin-vuex": "~5.0.0-beta.2",
     "@vue/cli-service": "~5.0.0-beta.2",
     "@vue/compiler-sfc": "3.1.2",
@@ -58,7 +55,6 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-vue": "^7.12.1",
     "husky": "^6.0.0",
-    "jest": "26.6.3",
     "lint-staged": "^11.0.0",
     "mockjs": "^1.1.0",
     "path-browserify": "^1.0.1",
@@ -71,9 +67,7 @@
     "serve-static": "^1.14.1",
     "svg-sprite-loader": "^6.0.9",
     "tasksfile": "^5.1.1",
-    "ts-jest": "^26.5.3",
-    "typescript": "^4.3.4",
-    "vue-jest": "^5.0.0-0"
+    "typescript": "^4.3.4"
   },
   "engines": {
     "node": ">=8.9",
