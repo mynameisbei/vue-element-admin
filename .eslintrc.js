@@ -32,7 +32,7 @@ module.exports = {
       },
     },
     {
-      files: ['./mock/**/*.js', './*.js'],
+      files: ['./mock/**/*.js', './*.js', './cypress/**/*.js'],
       extends: [
         'plugin:vue/vue3-recommended',
         'eslint:recommended',
