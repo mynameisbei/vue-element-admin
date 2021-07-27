@@ -26,10 +26,10 @@ export default defineComponent({
     const levelList = ref<RouteRaw[]>([]);
 
     watch(
-      () => route,
+      () => route.path,
       (val) => {
         // if you go to the redirect page, do not update the breadcrumbs
-        if (!val.path.startsWith('/redirect/')) {
+        if (!val.startsWith('/redirect/')) {
           getBreadcrumb();
         }
       },
